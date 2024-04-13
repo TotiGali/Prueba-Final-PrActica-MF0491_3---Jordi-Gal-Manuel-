@@ -1,14 +1,33 @@
+/* Autor: Jordi Galí Manuel */
+
 /* Estilos generales */
+
+:root {
+    --border-radius: 15px;
+    --marro: #9b7a77;
+    --gris: #b5c1ab;
+    --verd_fosc: #516551;
+    --blanc: #faf9f9;
+    --negre: #0f0b0bbc;
+    --vermell: #b10e02;
+    --groc: #8a8d00;
+  
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+
+@media only screen and (min-width: 480px) {
+    /* Estilos para pantallas más grandes o igual a 768px de ancho */
+    
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
+    background-color: var(--gris);
 }
 
 header {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--verd_fosc);
+    color: var(--blanc);
     text-align: center;
     padding: 1rem 0;
     border-radius: 10px;
@@ -21,7 +40,7 @@ main {
 section {
     margin-bottom: 2rem;
     border-radius: 10px;
-    background-color: #ffffff;
+    background-color:var(--blanc);
     padding: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -38,20 +57,20 @@ button {
     padding: 0.5rem;
     margin-bottom: 1rem;
     border: 1px solid #ced4da;
-    border-radius: 5px;
-    background-color: #f8f9fa;
+    border-radius: var(--border-radius);
+    background-color:var(--blanc);
 }
 
 /* Estilos para los botones */
 button {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--verd_fosc);
+    color: var(--blanc);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color:var(--groc);
 }
 
 /* Estilos para la tabla de resultados */
@@ -61,19 +80,19 @@ table {
 }
 
 table, th, td {
-    border: 1px solid #ddd;
+    border: 1px solid var(--blanc);
     padding: 0.5rem;
 }
 
 th {
-    background-color: #007bff;
-    color: white;
+    background-color:var(--verd_fosc);
+    color:var(--blanc);
     text-align: left;
 }
 
 /* Estilos para mensajes de error */
 .error {
-    color: red;
+    color:var(--vermell);
     font-style: italic;
 }
 
@@ -89,4 +108,5 @@ th {
 
 .fadeIn {
     animation: fadeIn 1s ease-in-out;
+}
 }

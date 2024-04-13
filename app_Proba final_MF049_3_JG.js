@@ -1,80 +1,80 @@
-class Destino {
-    constructor(nombre, ubicacion, actividades) {
-        this.nombre = nombre;
-        this.ubicacion = ubicacion;
-        this.actividades = actividades;
+// Autor: Jordi Galí Manuel
+
+class Aliment {
+    constructor(nom, calories, nutrients) {
+        this.nom = nom;
+        this.calories = calories;
+        this.nutrients = nutrients;
     }
 }
 
-class Ciudad extends Destino {
-    constructor(nombre, ubicacion, actividades, clima) {
-        super(nombre, ubicacion, actividades);
-        this.clima = clima;
+class Categoria extends Aliment {
+    constructor(nom, calories, nutrients, categoria) {
+        super(nom, calories, nutrients);
+        this.categoria = categoria;
     }
 }
 
-class Playa extends Destino {
-    constructor(nombre, ubicacion, actividades, temperaturaAgua) {
-        super(nombre, ubicacion, actividades);
-        this.temperaturaAgua = temperaturaAgua;
+class Propietats extends Aliment {
+    constructor(nom, calories, nutrients, propietats) {
+        super(nom, calories, nutrients);
+        this.propietats = propietats;
     }
 }
 
 // Instancias de las clases
 
-// Tres instancias adicionales de la clase Destino
-const destino1 = new Destino('Francia', 'Europa', ['Visitar la Torre Eiffel', 'Comer queso']);
-const destino2 = new Destino('Italia', 'Europa', ['Visita al Coliseo', 'Explorar el Vaticano']);
-const destino3 = new Destino('Japón', 'Asia', ['Visita al Templo Sensoji', 'Paseo por el barrio de Shibuya']);
+// Tres instancias adicionales de la clase Aliment
+const aliment1 = new Aliment('Pera', '125', ['Te fructosa', 'Te sacarosa']);
+const aliment2 = new Aliment('Escalopa', '400', ['Te molta proteïna', 'Te molt greix']);
+const aliment3 = new Aliment('Brocoli', '50', ['Te molta fibra', 'Te clorofila']);
 
-// Tres instancias adicionales de la clase Ciudad
-const ciudad1 = new Ciudad('Barcelona', 'España', ['Visitar Sagrada Familia', 'Paseo por Las Ramblas'], 'Mediterráneo');
-const ciudad2 = new Ciudad('Nueva York', 'EEUU', ['Visita al Empire State', 'Paseo por Central Park'], 'Templado');
-const ciudad3 = new Ciudad('Londres', 'Reino Unido', ['Visita al Palacio de Buckingham', 'Recorrido por el British Museum'], 'Templado');
-const ciudad4 = new Ciudad('Berlín', 'Alemania', ['Explorar la Puerta de Brandeburgo', 'Visita al Muro de Berlín'], 'Templado');
-const ciudad5 = new Ciudad('Praga', 'República Checa', ['Visita al Puente de Carlos', 'Explorar el Castillo de Praga'], 'Templado');
-
-// Tres instancias adicionales de la clase Playa
-const playa1 = new Playa('Cancún', 'México', ['Buceo en arrecifes', 'Relax en la playa'], 'Cálida');
-const playa2 = new Playa('Harstad', 'Noruega', ['Buceo en glaciares', 'Observar ballenas'], 'Fria');
-const playa3 = new Playa('Bora Bora', 'Polinesia Francesa', ['Esquí acuático', 'Nadar con tiburones'], 'Cálida');
-const playa4 = new Playa('Maldivas', 'Maldivas', ['Snorkel en arrecifes de coral', 'Relax en resorts de lujo'], 'Cálida');
+// Tres instancias adicionales de la clase Categoria
+const categoria1 = new Categoria('Iogurt', '210', ['Te proteïna', 'Te sucre'], 'lactics');
+const categoria2 = new Categoria('LLenties', '69', ['Te ferro', 'Te bitamines'], 'Gra');
+const categoria3 = new Categoria('Xucrut', '2', ['Es un super aliment', 'Te de tot'], 'verdura');
 
 
-const destinos = [destino1, destino2, destino3, ciudad1, ciudad2, ciudad3, ciudad4, ciudad5, playa1, playa2, playa3, playa4];
+// Tres instancias adicionales de la clase Propietats
+const propietat1 = new Propietats('Platan', '250', ['Te bitamines', 'Te carbohidrats'], 'Va molt bé per prevenir agulletes');
+const propietat2 = new Propietats('Cigrons', '150', ['Te minerals', 'Te fibra'], 'Va molt bé per perdre pes');
+const propietat3 = new Propietats('Pollastre', '650', ['Te proteïnes', 'Te aminoàcids'], 'Va molt bé per generar massa muscular');
+
+
+const aliments = [aliment1, aliment2, aliment3, categoria1, categoria2, categoria3, propietat1, propietat2, propietat3];
 document.addEventListener("DOMContentLoaded", function() {
-    const destinosSection = document.getElementById('destinos');
+    const alimentsSection = document.getElementById('aliments');
     const resultadosSection = document.getElementById('resultados');
     const resultadosComparacion = document.getElementById('resultadosComparacion');
 
-    let duracionTotalMax = 0;
+    let caloriesTotalMax = 0;
     
-    // Función para agregar campo de destino
-    function agregarCampoDestino() {
+    // Función para agregar campo de aliment
+    function agregarCampoAliment() {
         const nuevoCampo = document.createElement('div');
         nuevoCampo.innerHTML = `
-            <label for="destino">Destíno:</label>
-            <select name="destino" onchange="mostrarOpciones(this)">
+            <label for="aliments">Aliment:</label>
+            <select name="aliments" onchange="mostrarOpciones(this)">
                 <option value="seleccionar" disabled selected>Seleccionar</option>
-                ${crearOpcionesDestinos()}
+                ${crearOpcionesAliments()}
             </select>
             <div id="opciones"></div>
-            <label for="duracion">Duración (días):</label>
-            <input type="text" name="duracion" placeholder="Ingrese la duración">
+            <label for="calories">Calories (U):</label>
+            <input type="text" name="calories" placeholder="Introdueix les calories">
         `;
-        destinosSection.appendChild(nuevoCampo);
+        alimentsSection.appendChild(nuevoCampo);
     }
 
     // Función para crear las opciones del desplegable
-    function crearOpcionesDestinos() {
+    function crearOpcionesAliments() {
         let opciones = '';
-        destinos.forEach(destino => {
-            opciones += `<option value="${destino.nombre}">${destino.nombre}</option>`;
+        aliments.forEach(aliment => {
+            opciones += `<option value="${aliment.nom}">${aliment.nom}</option>`;
         });
         return opciones;
     }
 
-    // Función para mostrar opciones específicas según el destino seleccionado
+    // Función para mostrar opciones específicas según el alimento seleccionado
     function mostrarOpciones(select) {
         const opcionSeleccionada = select.value;
         const opcionesDiv = select.nextElementSibling;
@@ -82,73 +82,72 @@ document.addEventListener("DOMContentLoaded", function() {
         // Limpiar opciones anteriores
         opcionesDiv.innerHTML = '';
 
-        // Encontrar el destino seleccionado
-        const destinoSeleccionado = destinos.find(destino => destino.nombre === opcionSeleccionada);
-
+        // Encontrar el alimento seleccionado
+        const alimentSeleccionado = aliments.find(aliment => aliment.nom === opcionSeleccionada);
     
     }
 
 
-// Función para calcular el itinerario
-    function calcularItinerario() {
-        let duracionTotal = 0;
+// Función para calcular el contngut calòric
+    function calcularCalorias() {
+        let caloriesTotal = 0;
 
         let resultadosHTML = `
-            <h2>Resultados:</h2>
+            <h2>Resultats:</h2>
             <table>
                 <tr>
-                    <th>Destino</th>
-                    <th>Duración (días)</th>
-                    <th>Actividades sugeridas</th>
-                    <th>Mejor época para viajar</th>
+                    <th>Aliment</th>
+                    <th>Calories introduides</th>
+                    <th>Nutrients</th>
+                    <th>Prpietats</th>
                 </tr>
         `;
 
-        const destinosInputs = document.getElementsByName('destino');
-        const duracionesInputs = document.getElementsByName('duracion');
+        const alimentsInputs = document.getElementsByName('aliments');
+        const quantitatInputs = document.getElementsByName('calories');
 
-        for (let i = 0; i < destinosInputs.length; i++) {
-            const tipoDestino = destinosInputs[i].value;
-            const duracion = parseInt(duracionesInputs[i].value);
+        for (let i = 0; i < alimentsInputs.length; i++) {
+            const tipoAliment = alimentsInputs[i].value;
+            const quantitat = parseInt(quantitatInputs[i].value);
 
-            // Validar duración ingresada
-            if (isNaN(duracion) || duracion <= 0) {
-                alert('Por favor, ingrese una duración válida para el destino ' + destinosInputs[i].value);
+            // Validar quantitat ingresada
+            if (isNaN(calories) || calories <= 0) {
+                alert('Si et plau, introdueix una quantiat vàlida que no sigui un valor zero o negatiu ' + alimentsInputs[i].value);
                 return;
             }
 
-            let actividadesSugeridas = '';
-            let mejorEpoca = '';
+            let nutrientsSugeridas = '';
+            let milloraliment = '';
 
-            // Buscar el destino seleccionado en la lista de destinos
-            const destinoSeleccionado = destinos.find(destino => destino.nombre === tipoDestino);
+            // Buscar l'aliment seleccionado en la lista d'aliments
+            const alimentSeleccionado = aliments.find(aliment => aliment.nom === tipoAliment);
 
-            if (destinoSeleccionado) {
-                // Asignar actividades sugeridas según tipo de destino
-                if (destinoSeleccionado instanceof Ciudad || destinoSeleccionado instanceof Playa || destinoSeleccionado instanceof Destino) {
-                    actividadesSugeridas = destinoSeleccionado.actividades.join(', ');
+            if (alimentSeleccionado) {
+                // Asignar propietats sugeridas según tipo de aliment
+                if (alimentSeleccionado instanceof Aliment || alimentSeleccionado instanceof Categoria || alimentSeleccionado instanceof Propietats) {
+                     nutrientsSugeridas = alimentSeleccionado.nutrients.join(', ');
                 }
 
-                // Determinar mejor época para viajar
-                if (destinoSeleccionado instanceof Ciudad) {
-                    mejorEpoca = 'Primavera o otoño';
-                } else if (destinoSeleccionado instanceof Playa) {
-                    mejorEpoca = 'Invierno';
-                } else if (destinoSeleccionado instanceof Destino) {
-                    mejorEpoca = 'Todo el año';
+                // Determinar mejor aliment
+                if (alimentSeleccionado instanceof Aliment) {
+                    milloraliment = 'Prendre per esmorzar';
+                } else if (alimentSeleccionado instanceof Categoria) {
+                    milloraliment = 'Prendre per dinar';
+                } else if (alimentSeleccionado instanceof Propietats) {
+                    milloraliment = 'Prendre tot el dia';
                 }
 
                 // Agregar fila a la tabla de resultados
                 resultadosHTML += `
                     <tr>
-                        <td>${destinoSeleccionado.nombre}</td>
-                        <td>${duracion}</td>
-                        <td>${actividadesSugeridas}</td>
-                        <td>${mejorEpoca}</td>
+                        <td>${alimentSeleccionado.nom}</td>
+                        <td>${calories}</td>
+                        <td>${nutrientsSugeridas}</td>
+                        <td>${milloraliment}</td>
                     </tr>
                 `;
 
-                duracionTotal += duracion;
+                caloriesTotal += calories;
             }
         }
 
@@ -156,33 +155,33 @@ document.addEventListener("DOMContentLoaded", function() {
         resultadosSection.innerHTML = resultadosHTML;
 
         // Mostrar duración total del viaje
-        alert('La duración total del viaje es de ' + duracionTotal + ' días.');
-        duracionTotalMax = duracionTotal;
+        alert('La quantitat total de calories es de: ' + caloriesTotal + ' grams.');
+        caloriesTotalMax = caloriesTotal;
 
     }
 
 function calcularComparacion(){
 
-    let diasMaximos = document.getElementById('comparacionDias');
-    let valorMaximo = parseFloat(diasMaximos.value);
+    let caloriesMaximos = document.getElementById('comparacionCalorias');
+    let valorMaximo = parseFloat(caloriesMaximos.value);
 
-    if(duracionTotalMax > valorMaximo){
-        let diasSobrantes = duracionTotalMax - valorMaximo;
-        resultadosComparacion.innerHTML = `<p> ¡Te has pasado de días! (Tienes que eliminar ${diasSobrantes} días de tus vacaciones) </p>`;
-    } else if(duracionTotalMax == valorMaximo){
-        resultadosComparacion.innerHTML = `<p> ¡Has planificado la duración de tus días de vacaciones a la perfección! No te sobran ni te faltan días. </p>`;
+    if(caloriesTotalMax > valorMaximo){
+        let caloriesSobrantes = caloriesTotalMax - valorMaximo;
+        resultadosComparacion.innerHTML = `<p> ¡Te has pasado de calorias! (Tienes que eliminar ${caloriesSobrantes} calorias de tu dieta) </p>`;
+    } else if(caloriesTotalMax == valorMaximo){
+        resultadosComparacion.innerHTML = `<p> ¡Has planificado la dieta a la perfección! No te sobran ni te faltan calorias. </p>`;
     } else{
-        let diasRestantes = valorMaximo - duracionTotalMax;
-        resultadosComparacion.innerHTML = `<p> Aún puedes añadir más días a tus vacaciones (${diasRestantes} días restantes). </p>`;
+        let caloriesRestantes = valorMaximo - caloriesTotalMax;
+        resultadosComparacion.innerHTML = `<p> Aún puedes añadir más calorias a tu dieta (${caloriesRestantes} calorias restantes). </p>`;
     }
 }
 
 
-// Evento para agregar campo de destino al hacer clic en un botón
-document.getElementById('agregar-destino').addEventListener('click', agregarCampoDestino);
+// Evento para agregar campo de aliment al hacer clic en un botón
+document.getElementById('agregar-destino').addEventListener('click', agregarCampoAliment);
 
 // Evento para calcular el itinerario al hacer clic en un botón
-document.getElementById('calcular-itinerario').addEventListener('click', calcularItinerario);
+document.getElementById('calcular-aliment').addEventListener('click', calcularCalorias);
 
 // Evento para calcular la comparación de días al hacer clic en un botón
 document.getElementById('calcular-comparacion').addEventListener('click', calcularComparacion);

@@ -1,33 +1,37 @@
+<!-- Autor: Jordi Galí Manuel -->
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planificador de Itinerarios</title>
+    <title>Calculadora Nutricional</title>
     <link rel="stylesheet" href="styles_Proba final_MF049_3_JG.css">
 </head>
+
 <body>
     <header>
-        <h1>Planificador de Itinerarios</h1>
+        <h1>Calculadora nutricional</h1>
+        <a class="nav-link" style="color: orange;" href="enconstruccio_Proba final_MF049_3_JG.html">Enllaç a pàgina en construcció</a>
     </header>
     <main>
-        <section id="destinos">
-            <h2>Seleccione sus destinos y la duración de su estadía:</h2>
+        <section id="aliments">
+            <h2>Seleccioneu els aliments i el contingut calòric:</h2>
             <!-- Se insertarán los campos de entrada dinámicamente mediante JavaScript -->
-            <button id="agregar-destino">Agregar Destino</button>
+            <button id="agregar-aliment">Agregar Aliment</button>
         </section>
         <section>
-            <button id="calcular-itinerario">Calcular Itinerario</button>
+            <button id="calcular-calories">Calcular contingut calòric</button>
             <section id="resultados">
-                <!-- Aquí se mostrarán los resultados del itinerario -->
+                <!-- Aquí els resultats de les calories -->
             </section>
         </section>
       
         <section id="comparacion">
             <div>
-                <label for="comparacionDias">Duración Máxima (días):</label>
-                <input type="text" id="comparacionDias" name="comparacionDias" placeholder="Ingrese la duración máxima">
-                <button id="calcular-comparacion">Calcular Comparación</button>
+                <label for="objectiuCaloric">Objectiu calòric:</label>
+                <input type="text" id="objectiuCaloric" name="objectiuCaloric" placeholder="Ingresseu el vostre objectiu calòric">
+                <button id="calcular-comparacion">Calcular Comparació</button>
             </div>
             <section id="resultadosComparacion">
             <!-- Aquí se mostrarán los resultados -->
