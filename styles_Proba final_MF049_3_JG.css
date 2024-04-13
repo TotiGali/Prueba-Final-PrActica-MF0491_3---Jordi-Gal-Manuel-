@@ -1,0 +1,92 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    border-radius: 10px;
+}
+
+main {
+    padding: 2rem;
+}
+
+section {
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-bottom: 1rem;
+}
+
+/* Estilos para los campos de entrada y botones */
+input[type="text"],
+select,
+button {
+    width: calc(100% - 12px);
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+
+/* Estilos para los botones */
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para la tabla de resultados */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    text-align: left;
+}
+
+/* Estilos para mensajes de error */
+.error {
+    color: red;
+    font-style: italic;
+}
+
+/* Animación de keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation: fadeIn 1s ease-in-out;
+}
