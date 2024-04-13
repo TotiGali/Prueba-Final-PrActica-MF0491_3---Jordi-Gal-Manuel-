@@ -178,10 +178,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     // Evento para agregar campo de alimento al hacer clic en un botón
-    document.getElementById('agregar-destino').addEventListener('click', agregarCampoAliment);
+    document.getElementById('agregar-aliment').addEventListener('click', agregarCampoAliment);
 
     // Evento para calcular el itinerario al hacer clic en un botón
-    document.getElementById('calcular-aliment').addEventListener('click', calcularCalorias);
+    document.getElementById('calcular-calories').addEventListener('click', calcularCalorias);
 
     // Evento para calcular la comparación de días al hacer clic en un botón
     document.getElementById('calcular-comparacion').addEventListener('click', calcularComparacion);
