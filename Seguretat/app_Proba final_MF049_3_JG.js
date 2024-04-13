@@ -9,15 +9,15 @@ class Aliment {
 }
 
 class Categoria extends Aliment {
-    constructor(nom, calories, categoria) {
-        super(nom, calories);
+    constructor(nom, calories, nutrients, categoria) {
+        super(nom, calories, nutrients);
         this.categoria = categoria;
     }
 }
 
 class Propietats extends Aliment {
-    constructor(nom, calories, propietats) {
-        super(nom, calories);
+    constructor(nom, calories, nutrients, propietats) {
+        super(nom, calories, nutrients);
         this.propietats = propietats;
     }
 }
@@ -25,20 +25,20 @@ class Propietats extends Aliment {
 // Instancias de las clases
 
 // Tres instancias adicionales de la clase Aliment
-const aliment1 = new Aliment('Pera', 125, ['Te fructosa', 'Te sacarosa']);
-const aliment2 = new Aliment('Escalopa', 400, ['Te molta proteïna', 'Te molt greix']);
-const aliment3 = new Aliment('Brocoli', 50, ['Te molta fibra', 'Te clorofila']);
+const aliment1 = new Aliment('Pera', '125', ['Te fructosa', 'Te sacarosa']);
+const aliment2 = new Aliment('Escalopa', '400', ['Te molta proteïna', 'Te molt greix']);
+const aliment3 = new Aliment('Brocoli', '50', ['Te molta fibra', 'Te clorofila']);
 
 // Tres instancias adicionales de la clase Categoria
-const categoria1 = new Categoria('Iogurt', 210, 'lactics');
-const categoria2 = new Categoria('LLenties', 69, 'Gra');
-const categoria3 = new Categoria('Xucrut', 2, 'verdura');
+const categoria1 = new Categoria('Iogurt', '210', ['Te proteïna', 'Te sucre'], 'lactics');
+const categoria2 = new Categoria('LLenties', '69', ['Te ferro', 'Te bitamines'], 'Gra');
+const categoria3 = new Categoria('Xucrut', '2', ['Es un super aliment', 'Te de tot'], 'verdura');
 
 
 // Tres instancias adicionales de la clase Propietats
-const propietat1 = new Propietats('Platan', 250, 'Va molt bé per prevenir agulletes');
-const propietat2 = new Propietats('Cigrons', 150, 'Va molt bé per perdre pes');
-const propietat3 = new Propietats('Pollastre', 650, 'Va molt bé per generar massa muscular');
+const propietat1 = new Propietats('Platan', '250', ['Te bitamines', 'Te carbohidrats'], 'Va molt bé per prevenir agulletes');
+const propietat2 = new Propietats('Cigrons', '150', ['Te minerals', 'Te fibra'], 'Va molt bé per perdre pes');
+const propietat3 = new Propietats('Pollastre', '650', ['Te proteïnes', 'Te aminoàcids'], 'Va molt bé per generar massa muscular');
 
 
 const aliments = [aliment1, aliment2, aliment3, categoria1, categoria2, categoria3, propietat1, propietat2, propietat3];
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
-    // Función para calcular el contenido calórico
+// Función para calcular el contngut calòric
     function calcularCalorias() {
         let caloriesTotal = 0;
 
@@ -104,31 +104,31 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
 
         const alimentsInputs = document.getElementsByName('aliments');
-        const caloriesInputs = document.getElementsByName('calories');
+        const quantitatInputs = document.getElementsByName('calories');
 
         for (let i = 0; i < alimentsInputs.length; i++) {
             const tipoAliment = alimentsInputs[i].value;
-            const calories = parseInt(caloriesInputs[i].value);
+            const quantitat = parseInt(quantitatInputs[i].value);
 
-            // Validar cantidad de calorías ingresada
+            // Validar quantitat ingresada
             if (isNaN(calories) || calories <= 0) {
-                alert('Si et plau, introdueix una quantitat vàlida que no sigui un valor zero o negatiu per ' + alimentsInputs[i].value);
+                alert('Si et plau, introdueix una quantiat vàlida que no sigui un valor zero o negatiu ' + alimentsInputs[i].value);
                 return;
             }
 
             let nutrientsSugeridas = '';
             let milloraliment = '';
 
-            // Buscar el alimento seleccionado en la lista de alimentos
+            // Buscar l'aliment seleccionado en la lista d'aliments
             const alimentSeleccionado = aliments.find(aliment => aliment.nom === tipoAliment);
 
             if (alimentSeleccionado) {
-                // Asignar propiedades sugeridas según tipo de alimento
+                // Asignar propietats sugeridas según tipo de aliment
                 if (alimentSeleccionado instanceof Aliment || alimentSeleccionado instanceof Categoria || alimentSeleccionado instanceof Propietats) {
                      nutrientsSugeridas = alimentSeleccionado.nutrients.join(', ');
                 }
 
-                // Determinar mejor alimento
+                // Determinar mejor aliment
                 if (alimentSeleccionado instanceof Aliment) {
                     milloraliment = 'Prendre per esmorzar';
                 } else if (alimentSeleccionado instanceof Categoria) {
@@ -160,30 +160,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }
 
-    function calcularComparacion(){
+function calcularComparacion(){
 
-        let caloriesMaximos = document.getElementById('comparacionCalorias');
-        let valorMaximo = parseFloat(caloriesMaximos.value);
+    let caloriesMaximos = document.getElementById('comparacionCalorias');
+    let valorMaximo = parseFloat(caloriesMaximos.value);
 
-        if(caloriesTotalMax > valorMaximo){
-            let caloriesSobrantes = caloriesTotalMax - valorMaximo;
-            resultadosComparacion.innerHTML = `<p> ¡Te has pasado de calorias! (Tienes que eliminar ${caloriesSobrantes} calorias de tu dieta) </p>`;
-        } else if(caloriesTotalMax == valorMaximo){
-            resultadosComparacion.innerHTML = `<p> ¡Has planificado la dieta a la perfección! No te sobran ni te faltan calorias. </p>`;
-        } else{
-            let caloriesRestantes = valorMaximo - caloriesTotalMax;
-            resultadosComparacion.innerHTML = `<p> Aún puedes añadir más calorias a tu dieta (${caloriesRestantes} calorias restantes). </p>`;
-        }
+    if(caloriesTotalMax > valorMaximo){
+        let caloriesSobrantes = caloriesTotalMax - valorMaximo;
+        resultadosComparacion.innerHTML = `<p> ¡Te has pasado de calorias! (Tienes que eliminar ${caloriesSobrantes} calorias de tu dieta) </p>`;
+    } else if(caloriesTotalMax == valorMaximo){
+        resultadosComparacion.innerHTML = `<p> ¡Has planificado la dieta a la perfección! No te sobran ni te faltan calorias. </p>`;
+    } else{
+        let caloriesRestantes = valorMaximo - caloriesTotalMax;
+        resultadosComparacion.innerHTML = `<p> Aún puedes añadir más calorias a tu dieta (${caloriesRestantes} calorias restantes). </p>`;
     }
+}
 
 
-    // Evento para agregar campo de alimento al hacer clic en un botón
-    document.getElementById('agregar-destino').addEventListener('click', agregarCampoAliment);
+// Evento para agregar campo de aliment al hacer clic en un botón
+document.getElementById('agregar-destino').addEventListener('click', agregarCampoAliment);
 
-    // Evento para calcular el itinerario al hacer clic en un botón
-    document.getElementById('calcular-aliment').addEventListener('click', calcularCalorias);
+// Evento para calcular el itinerario al hacer clic en un botón
+document.getElementById('calcular-aliment').addEventListener('click', calcularCalorias);
 
-    // Evento para calcular la comparación de días al hacer clic en un botón
-    document.getElementById('calcular-comparacion').addEventListener('click', calcularComparacion);
+// Evento para calcular la comparación de días al hacer clic en un botón
+document.getElementById('calcular-comparacion').addEventListener('click', calcularComparacion);
 
 });
